@@ -43,3 +43,5 @@ Vercel auto-deploys `main` branch on push. Build command (set in `vercel.json`):
 
 - **Vercel** — https://vercel.com/yaus-projects-fb053b5f/yauhenm-site/deployments → find an earlier deployment → Promote to Production
 - **Old Next.js source** — `~/projects/personal/47-yauhen-brand/yauhenm-com-launch-2026-05-01/old-site-backup/yauhen-massalski-site-source.zip`
+
+<!-- 2026-05-07: GitHub-Vercel auto-deploy wired -->
