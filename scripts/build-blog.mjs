@@ -240,6 +240,26 @@ ${JSON.stringify({
   "mainEntityOfPage": url,
 })}
 </script>
+${post.videoYT ? `<script type="application/ld+json">
+${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": post.title,
+  "description": post.description,
+  "thumbnailUrl": [
+    `https://i.ytimg.com/vi/${post.videoYT}/maxresdefault.jpg`,
+    `https://i.ytimg.com/vi/${post.videoYT}/hqdefault.jpg`,
+  ],
+  "uploadDate": post.date,
+  "contentUrl": `https://www.youtube.com/watch?v=${post.videoYT}`,
+  "embedUrl": `https://www.youtube-nocookie.com/embed/${post.videoYT}`,
+  "publisher": {
+    "@type": "Person",
+    "name": "Yauhen Massalski",
+    "url": SITE,
+  },
+})}
+</script>` : ''}
 ${fontsLink}
 <style>${sharedCSS}</style>
 ${analyticsBlock}
@@ -341,6 +361,37 @@ function sitemapXML(posts) {
   </url>`).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${items}
+</urlset>`;
+}
+
+// ---------- video-sitemap.xml ----------
+// Lists posts that embed a YouTube video so Google's "Discovered videos" picks them up.
+// Spec: https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps
+function videoSitemapXML(posts) {
+  const videoPosts = posts.filter(p => p.videoYT);
+  const items = videoPosts.map(p => {
+    const pageUrl = `${SITE}/blog/${p.slug}`;
+    const thumb = `https://i.ytimg.com/vi/${p.videoYT}/maxresdefault.jpg`;
+    const player = `https://www.youtube-nocookie.com/embed/${p.videoYT}`;
+    const watch = `https://www.youtube.com/watch?v=${p.videoYT}`;
+    return `  <url>
+    <loc>${pageUrl}</loc>
+    <video:video>
+      <video:thumbnail_loc>${thumb}</video:thumbnail_loc>
+      <video:title>${esc(p.title)}</video:title>
+      <video:description>${esc(p.description)}</video:description>
+      <video:player_loc allow_embed="yes">${player}</video:player_loc>
+      <video:content_loc>${watch}</video:content_loc>
+      <video:publication_date>${p.date}T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:platform relationship="allow">web mobile tv</video:platform>
+    </video:video>
+  </url>`;
+  }).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${items}
 </urlset>`;
 }
@@ -447,19 +498,22 @@ async function main() {
     console.log(`  ✓ /blog/${post.slug}  (${post.readMin} min, ${laneLabel(post.lane)})`);
   }
 
-  // Index, sitemap, rss
+  // Index, sitemap, video sitemap, rss
   await fs.writeFile(path.join(OUT, 'index.html'), indexHTML(posts));
   await fs.writeFile(path.join(ROOT, 'sitemap.xml'), sitemapXML(posts));
+  await fs.writeFile(path.join(ROOT, 'video-sitemap.xml'), videoSitemapXML(posts));
   await fs.writeFile(path.join(ROOT, 'rss.xml'), rssXML(posts));
 
   // Copy images
   await copyImages();
 
+  const videoCount = posts.filter(p => p.videoYT).length;
   const t = ((Date.now() - t0) / 1000).toFixed(2);
   console.log(`▸ Built ${posts.length} post${posts.length === 1 ? '' : 's'} in ${t}s`);
-  console.log(`  index:    /blog/index.html`);
-  console.log(`  sitemap:  /sitemap.xml`);
-  console.log(`  rss:      /rss.xml`);
+  console.log(`  index:         /blog/index.html`);
+  console.log(`  sitemap:       /sitemap.xml`);
+  console.log(`  video-sitemap: /video-sitemap.xml  (${videoCount} video${videoCount === 1 ? '' : 's'})`);
+  console.log(`  rss:           /rss.xml`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

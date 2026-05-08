@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://yauhenm.com/blog/rebuilt-yauhenm-with-claude</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/m055u82ugpM/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>I rebuilt my own website with Claude in one morning</video:title>
+      <video:description>How I redesigned yauhenm.com with Claude Opus in about four hours. Three rejected directions, one shipped V4, and what I&#39;d do differently next time.</video:description>
+      <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/m055u82ugpM</video:player_loc>
+      <video:content_loc>https://www.youtube.com/watch?v=m055u82ugpM</video:content_loc>
+      <video:publication_date>2026-05-07T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:platform relationship="allow">web mobile tv</video:platform>
+    </video:video>
+  </url>
+</urlset>
