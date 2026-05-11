@@ -7,6 +7,13 @@
     <language>en-us</language>
     <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://yauhenm.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>I built a $0 customer service bot for a taco shop</title>
+      <link>https://yauhenm.com/blog/zero-dollar-bot-for-a-taco-shop</link>
+      <guid>https://yauhenm.com/blog/zero-dollar-bot-for-a-taco-shop</guid>
+      <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+      <description>Crack Taco needed a customer service bot. I had a $20 Claude Max subscription. Here&#39;s the loop that trained it to 50/50 accuracy for zero dollars — and the side hustle anyone with the same subscription can run.</description>
+    </item>
+    <item>
       <title>I rebuilt my own website with Claude in one morning</title>
       <link>https://yauhenm.com/blog/rebuilt-yauhenm-with-claude</link>
       <guid>https://yauhenm.com/blog/rebuilt-yauhenm-with-claude</guid>
