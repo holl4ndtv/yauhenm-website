@@ -198,7 +198,7 @@ const footer = `
 // ---------- post page ----------
 function postHTML(post) {
   const url = `${SITE}/blog/${post.slug}`;
-  const ogImg = post.hero ? `${SITE}${post.hero}` : `${SITE}/_assets/hero-seated.jpg`;
+  const ogImg = post.hero ? `${SITE}${post.hero}` : `${SITE}/_assets/og-image.jpg`;
   const heroBlock = post.videoYT
     ? `<div class="yt-embed"><iframe src="https://www.youtube-nocookie.com/embed/${esc(post.videoYT)}" title="${esc(post.title)}" allowfullscreen loading="lazy"></iframe></div>`
     : (post.hero ? `<div class="hero-img"><img src="${esc(post.hero)}" alt="${esc(post.title)}" loading="eager"></div>` : '');
@@ -223,7 +223,6 @@ function postHTML(post) {
 <meta property="article:published_time" content="${post.date}">
 <meta property="article:author" content="Yauhen Massalski">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@y.massalski">
 <meta name="twitter:title" content="${esc(post.title)}">
 <meta name="twitter:description" content="${esc(post.description)}">
 <meta name="twitter:image" content="${ogImg}">
@@ -319,8 +318,13 @@ function indexHTML(posts) {
 <meta property="og:url" content="${SITE}/blog/">
 <meta property="og:title" content="Blog — Yauhen Massalski">
 <meta property="og:description" content="Build stories, AI takes, and guides. The build, the cost, the receipt.">
-<meta property="og:image" content="${SITE}/_assets/hero-seated.jpg">
+<meta property="og:image" content="${SITE}/_assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Yauhen Massalski">
+<meta name="twitter:description" content="Build stories, AI takes, and guides. The build, the cost, the receipt.">
+<meta name="twitter:image" content="${SITE}/_assets/og-image.jpg">
 ${fontsLink}
 <style>${sharedCSS}</style>
 ${analyticsBlock}

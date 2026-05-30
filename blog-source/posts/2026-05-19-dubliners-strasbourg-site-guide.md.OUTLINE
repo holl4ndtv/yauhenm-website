@@ -1,0 +1,85 @@
+---
+title: How I built the Dubliners Strasbourg site — a guide
+date: 2026-05-19
+slug: dubliners-strasbourg-site-guide
+status: OUTLINE — review before drafting full post
+---
+
+# Outline — Dubliners guide
+
+**Voice:** build-log, second-person ("you"), specifics-over-sentiment.
+**Target length:** ~1400 words.
+**Why this post matters:** real Irish pub in Strasbourg, real shipped site, real techniques anyone can copy. Concrete.
+
+---
+
+## Section spine
+
+1. **The brief (3 paragraphs)**
+   - Real pub. Real owners. Old WordPress site, looked like 2014.
+   - What they wanted: feel like the pub feels — warm, wooden, Guinness pour, FR/EN because Strasbourg is half French half tourist.
+   - What I told myself: no template. Build it from the pub's own world.
+
+2. **The "feel" decision (1 short section, photos)**
+   - Walked the pub in my head: dark wood, copper, slow pour, low light.
+   - Palette pulled from a Guinness pour photo, not from a design system file.
+   - Typography pair: Playfair Display (the menu chalkboard) + Inter (the keep-it-readable backbone).
+   - Anti-pattern I avoided: shipping a Stripe-skin or a Notion-skin. Hybrid the pub's actual visual world.
+
+3. **The scroll hero (the part everyone notices)**
+   - 136 frames of a Guinness pour, sequenced to scroll position.
+   - Pinned 400vh section, sticky canvas, ScrollTrigger scrub: 0.4.
+   - Encoded to WebP @ q75 → 4.9 MB for the whole sequence. Loads fast.
+   - Code snippet: the ScrollSequence component (15 lines).
+   - Why this works for a pub site: the slow pour IS the brand.
+
+4. **FR/EN done right (no library, no headache)**
+   - Strasbourg traffic = ~50/50. French default, EN toggle in nav.
+   - Choice persists in localStorage so a regular doesn't pick every visit.
+   - All copy lives in one object per language, no i18n framework, ~200 lines total.
+   - Code snippet: LangProvider context (10 lines).
+
+5. **The "no template" rule in practice**
+   - I scraped 12 other Irish-pub sites first. They all look the same: shamrocks, harp, green-on-black.
+   - Wrote a one-page brand recon (`BRAND-RECON.md`) before any pixel.
+   - Decided: keep Irish without the costume. Wood + copper + the pour, not shamrocks.
+   - Anti-template-slop pass: kill stock imagery, kill rounded-everything, kill gradient buttons.
+
+6. **The Ship Gate (what I actually checked before saying done)**
+   - Playwright at 390 / 768 / 1440.
+   - Zoomed into every CTA, every menu item, every form.
+   - Cold-traffic walkthrough: would a tourist arriving at the train station find the address in <5 seconds?
+   - Bonus: tested with phone on real H+ (not just WiFi) — the scroll sequence still loaded.
+
+7. **Stack receipt (the short version)**
+   - Next 16 (Tailwind 4, async request APIs).
+   - GSAP + ScrollTrigger.
+   - 136 frames encoded with `sharp` at q75 WebP.
+   - Vercel, ~$0/mo for this traffic.
+   - All code: ~600 lines. Not a giant project.
+
+8. **What I'd do differently**
+   - Encode frames at 720p not 1080p — invisible at scroll speed, half the bytes.
+   - Build the FR/EN toggle on day 1 not day 4 (rewriting copy in 2 languages is harder than designing for it).
+   - One thing I'd keep: scraping competitors BEFORE designing. Saved me from shipping the shamrock.
+
+9. **Closer / vault tie-in**
+   - Every prompt, the frame-encode script, the ScrollSequence component → free in the vault.
+   - One line CTA, no shouting.
+
+---
+
+## Assets needed (before publishing)
+
+- [ ] Hero screenshot of the live site (Playwright, desktop)
+- [ ] Hero screenshot mobile (390)
+- [ ] One screenshot of the FR/EN toggle in action
+- [ ] ScrollSequence.tsx code excerpt
+- [ ] LangProvider.tsx code excerpt
+- [ ] Live URL (do we have permission to link the pub or do we anonymize?)
+
+## Questions for Yauhen before drafting
+
+1. **Link the live pub or not?** — Dubliners Strasbourg site is real; if we link it, we're driving traffic to a client. Fine, or anonymize as "an Irish pub in Strasbourg"?
+2. **How technical should I go?** — I have it spined as build-log with 2 short code snippets. Tighter (no code, all narrative) or looser (more code)?
+3. **Anti-template-slop story strength** — the "I refused the shamrock" beat is the strongest narrative thread. Want me to lead with it, or keep it as section 5?
