@@ -47,7 +47,8 @@ const readingTime = (text) => {
 
 const fmtDate = (iso) => {
   const d = new Date(iso);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  // timeZone UTC: "2026-05-11" parses as UTC midnight — local (PDT) rendering shifts it a day early
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 };
 
 const laneLabel = (lane) => ({
@@ -66,6 +67,7 @@ const sharedCSS = `
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 body{background:var(--bg);color:var(--bone);font-family:'Inter',sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -157,18 +159,26 @@ a{color:inherit;text-decoration:none}
 // ---------- google fonts link ----------
 const fontsLink = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">`;
 
-// ---------- analytics block (matches index.html) ----------
+// ---------- analytics block (matches index.html, incl. GA Consent Mode v2) ----------
+// Keep in lockstep with index.html: same consent defaults, or EU visitors get cookies
+// on blog pages that the homepage carefully denies.
 const analyticsBlock = `
-<!-- Vercel Analytics -->
-<script defer src="/_vercel/insights/script.js"></script>
+<!-- Vercel Speed Insights (Web Analytics script intentionally absent — not enabled for this project) -->
 <script defer src="/_vercel/speed-insights/script.js"></script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4 with Consent Mode v2 — same defaults as the homepage -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3Y0WPV74V"></script>
 <script>
   window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());gtag('config','G-Y3Y0WPV74V');
+  gtag('js',new Date());
+  gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'granted','region':['US']});
+  gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','region':['BE','BG','CZ','DK','DE','EE','IE','GR','ES','FR','HR','IT','CY','LV','LT','LU','HU','MT','NL','AT','PL','PT','RO','SI','SK','FI','SE','GB','CH','IS','NO','LI']});
+  gtag('config','G-Y3Y0WPV74V',{'anonymize_ip':true});
 </script>
 `.trim();
+
+// ---------- shared head links (favicon + RSS discovery) ----------
+const headLinks = `<link rel="icon" type="image/svg+xml" href="/_assets/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Yauhen Massalski — Blog" href="/rss.xml">`;
 
 // ---------- shared header ----------
 const header = `
@@ -179,10 +189,10 @@ const header = `
       <a href="/#story">Story</a>
       <a href="/#youtube">Watch</a>
       <a href="/#ventures">Ventures</a>
-      <a class="is-active" href="/blog/">Blog</a>
+      <a class="is-active" href="/blog">Blog</a>
       <a class="nav-cta" href="/#work">Work with me</a>
     </div>
-    <a class="nav-mobile" href="/blog/">Blog →</a>
+    <a class="nav-mobile" href="/blog">Blog →</a>
   </nav>
 </header>
 `.trim();
@@ -215,6 +225,7 @@ function postHTML(post) {
 <meta name="description" content="${esc(post.description)}">
 <meta name="author" content="Yauhen Massalski">
 <link rel="canonical" href="${url}">
+${headLinks}
 <meta property="og:type" content="article">
 <meta property="og:url" content="${url}">
 <meta property="og:title" content="${esc(post.title)}">
@@ -250,7 +261,6 @@ ${JSON.stringify({
     `https://i.ytimg.com/vi/${post.videoYT}/hqdefault.jpg`,
   ],
   "uploadDate": post.date,
-  "contentUrl": `https://www.youtube.com/watch?v=${post.videoYT}`,
   "embedUrl": `https://www.youtube-nocookie.com/embed/${post.videoYT}`,
   "publisher": {
     "@type": "Person",
@@ -285,7 +295,7 @@ ${header}
       <a href="${xShare}" target="_blank" rel="noopener">X / Twitter</a>
       <a href="${liShare}" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <a class="back-link" href="/blog/">← All posts</a>
+    <a class="back-link" href="/blog">← All posts</a>
   </div>
 </article>
 ${footer}
@@ -313,9 +323,10 @@ function indexHTML(posts) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Blog — Yauhen Massalski</title>
 <meta name="description" content="Build stories, AI takes, and guides from a pro athlete who ships AI things. The build, the cost, the receipt.">
-<link rel="canonical" href="${SITE}/blog/">
+<link rel="canonical" href="${SITE}/blog">
+${headLinks}
 <meta property="og:type" content="website">
-<meta property="og:url" content="${SITE}/blog/">
+<meta property="og:url" content="${SITE}/blog">
 <meta property="og:title" content="Blog — Yauhen Massalski">
 <meta property="og:description" content="Build stories, AI takes, and guides. The build, the cost, the receipt.">
 <meta property="og:image" content="${SITE}/_assets/og-image.jpg">
@@ -346,10 +357,13 @@ ${footer}
 }
 
 // ---------- sitemap.xml ----------
+// URLs deliberately slash-less (except root): vercel.json trailingSlash:false 308s
+// /blog/ -> /blog, and a sitemap should never list redirecting URLs.
 function sitemapXML(posts) {
+  const newest = posts[0]?.date; // posts arrive sorted newest-first
   const urls = [
-    { loc: `${SITE}/`, priority: '1.0', changefreq: 'weekly' },
-    { loc: `${SITE}/blog/`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${SITE}/`, priority: '1.0', changefreq: 'weekly', lastmod: newest },
+    { loc: `${SITE}/blog`, priority: '0.9', changefreq: 'weekly', lastmod: newest },
     ...posts.map(p => ({
       loc: `${SITE}/blog/${p.slug}`,
       priority: '0.8',
@@ -358,8 +372,8 @@ function sitemapXML(posts) {
     })),
   ];
   const items = urls.map(u => `  <url>
-    <loc>${u.loc}</loc>
-    ${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}
+    <loc>${u.loc}</loc>${u.lastmod ? `
+    <lastmod>${u.lastmod}</lastmod>` : ''}
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n');
@@ -378,7 +392,6 @@ function videoSitemapXML(posts) {
     const pageUrl = `${SITE}/blog/${p.slug}`;
     const thumb = `https://i.ytimg.com/vi/${p.videoYT}/maxresdefault.jpg`;
     const player = `https://www.youtube-nocookie.com/embed/${p.videoYT}`;
-    const watch = `https://www.youtube.com/watch?v=${p.videoYT}`;
     return `  <url>
     <loc>${pageUrl}</loc>
     <video:video>
@@ -386,7 +399,6 @@ function videoSitemapXML(posts) {
       <video:title>${esc(p.title)}</video:title>
       <video:description>${esc(p.description)}</video:description>
       <video:player_loc allow_embed="yes">${player}</video:player_loc>
-      <video:content_loc>${watch}</video:content_loc>
       <video:publication_date>${p.date}T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:platform relationship="allow">web mobile tv</video:platform>
@@ -413,7 +425,7 @@ function rssXML(posts) {
 <rss version="2.0">
   <channel>
     <title>Yauhen Massalski — Blog</title>
-    <link>${SITE}/blog/</link>
+    <link>${SITE}/blog</link>
     <description>Build stories, AI takes, and guides.</description>
     <language>en-us</language>
     <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${SITE}/rss.xml" rel="self" type="application/rss+xml" />
@@ -475,6 +487,10 @@ async function main() {
     }
 
     const slug = data.slug || slugFromFilename(file);
+    // Slug becomes a filesystem path and a URL — reject anything that isn't kebab-case.
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      throw new Error(`Bad slug "${slug}" in ${file} — use lowercase letters, digits, hyphens only.`);
+    }
     const html = marked.parse(content);
 
     posts.push({
@@ -500,6 +516,16 @@ async function main() {
     await fs.mkdir(dir, { recursive: true });
     await fs.writeFile(path.join(dir, 'index.html'), postHTML(post));
     console.log(`  ✓ /blog/${post.slug}  (${post.readMin} min, ${laneLabel(post.lane)})`);
+  }
+
+  // Prune generated pages whose source is gone or now draft:true —
+  // otherwise "unpublishing" a post leaves it live forever.
+  const keep = new Set(posts.map(p => p.slug));
+  for (const d of await fs.readdir(OUT, { withFileTypes: true })) {
+    if (d.isDirectory() && !keep.has(d.name)) {
+      await fs.rm(path.join(OUT, d.name), { recursive: true });
+      console.log(`  ⊗ pruned stale /blog/${d.name}`);
+    }
   }
 
   // Index, sitemap, video sitemap, rss

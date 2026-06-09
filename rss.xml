@@ -2,7 +2,7 @@
 <rss version="2.0">
   <channel>
     <title>Yauhen Massalski — Blog</title>
-    <link>https://yauhenm.com/blog/</link>
+    <link>https://yauhenm.com/blog</link>
     <description>Build stories, AI takes, and guides.</description>
     <language>en-us</language>
     <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://yauhenm.com/rss.xml" rel="self" type="application/rss+xml" />

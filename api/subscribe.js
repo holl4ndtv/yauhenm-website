@@ -66,6 +66,7 @@ export default async function handler(req, res) {
   if (!isAllowedOrigin(origin)) {
     return res.status(200).json(OK_RESPONSE);
   }
+  res.setHeader('Access-Control-Allow-Origin', origin);
 
   let body = req.body;
   if (typeof body === 'string') {
@@ -102,7 +103,7 @@ export default async function handler(req, res) {
 
   if (RESEND_API_KEY && RESEND_AUDIENCE_ID) {
     try {
-      await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
+      const r = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${RESEND_API_KEY}`,
@@ -110,6 +111,11 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({ email, unsubscribed: false }),
       });
+      // Resend errors (bad key, wrong audience id) come back as 4xx JSON, not thrown —
+      // surface them in logs or signups vanish silently.
+      if (!r.ok) {
+        console.error('resend-audience-status', r.status, (await r.text()).slice(0, 200));
+      }
     } catch (e) {
       console.error('resend-audience-fail', e?.message || e);
     }
@@ -117,7 +123,7 @@ export default async function handler(req, res) {
 
   if (RESEND_API_KEY && FROM_EMAIL) {
     try {
-      await fetch('https://api.resend.com/emails', {
+      const r = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${RESEND_API_KEY}`,
@@ -138,6 +144,9 @@ export default async function handler(req, res) {
           ].join('\n'),
         }),
       });
+      if (!r.ok) {
+        console.error('resend-welcome-status', r.status, (await r.text()).slice(0, 200));
+      }
     } catch (e) {
       console.error('resend-welcome-fail', e?.message || e);
     }
