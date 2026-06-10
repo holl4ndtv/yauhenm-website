@@ -132,6 +132,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           from: FROM_EMAIL,
           to: email,
+          reply_to: 'yaumassalski@gmail.com', // "Reply to this email anytime" routes to Yauhen's real inbox
           subject: "You're on the list.",
           text: [
             "When I ship something, you get the receipt.",
