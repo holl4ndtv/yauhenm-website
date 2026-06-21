@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="A basketball and an AI chat-answer bubble connected — pro athlete and AI-search consultant, same person.">
+  <defs>
+    <radialGradient id="bg" cx="60%" cy="40%" r="85%">
+      <stop offset="0%" stop-color="#1C1813"/><stop offset="55%" stop-color="#14110D"/><stop offset="100%" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E5C987"/><stop offset="60%" stop-color="#C9A961"/><stop offset="100%" stop-color="#A9894C"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="42%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#2A2318"/><stop offset="100%" stop-color="#12100B"/>
+    </radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0"/></filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- BASKETBALL — correct seams -->
+  <g transform="translate(560 450)">
+    <circle r="250" fill="url(#ball)"/>
+    <circle r="250" fill="none" stroke="url(#gold)" stroke-width="5"/>
+    <g fill="none" stroke="url(#gold)" stroke-width="4.5" stroke-linecap="round">
+      <line x1="0" y1="-250" x2="0" y2="250"/>
+      <line x1="-250" y1="0" x2="250" y2="0"/>
+      <path d="M0 -250 C -150 -110 -150 110 0 250"/>
+      <path d="M0 -250 C 150 -110 150 110 0 250"/>
+    </g>
+    <ellipse cx="-90" cy="-95" rx="120" ry="80" fill="#F2EDE3" opacity="0.04"/>
+  </g>
+
+  <!-- connector line -->
+  <path d="M820 380 C 920 360 980 350 1060 350" fill="none" stroke="url(#gold)" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 16" opacity="0.85"/>
+
+  <!-- AI ANSWER BUBBLE -->
+  <g transform="translate(1080 250)">
+    <rect x="0" y="0" width="340" height="210" rx="30" fill="#16130F" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M52 210 l0 56 l56 -56 z" fill="#16130F" stroke="url(#gold)" stroke-width="5" stroke-linejoin="round"/>
+    <line x1="40" y1="62" x2="300" y2="62" stroke="url(#gold)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="40" y1="108" x2="300" y2="108" stroke="#A89F92" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
+    <line x1="40" y1="154" x2="210" y2="154" stroke="#A89F92" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+  </g>
+
+  <rect width="1600" height="900" filter="url(#grain)"/>
+</svg>
