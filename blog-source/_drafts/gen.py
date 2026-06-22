@@ -9,7 +9,7 @@ import re, sys, json, urllib.request, pathlib, time
 HERE = pathlib.Path(__file__).parent
 BLOG = HERE.parent
 BRIEF = (BLOG / "_BLOG-BRIEF.md").read_text()
-SPECS = (BLOG / "_BATCH-10-SPECS.md").read_text()
+SPECS = (BLOG / "_BATCH-10-SPECS-v2.md").read_text()
 MODEL = "qwen3.6:35b-a3b"
 API = "http://localhost:11434/api/generate"
 

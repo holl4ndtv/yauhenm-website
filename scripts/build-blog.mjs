@@ -45,6 +45,34 @@ const readingTime = (text) => {
   return Math.max(1, Math.round(words / 220));
 };
 
+// Pull "### Question?\nAnswer" pairs out of the markdown for FAQPage schema.
+// Only headings that end with "?" count, so non-FAQ h3s are ignored.
+const extractFAQs = (md) => {
+  const faqs = [];
+  const re = /^###\s+(.+\?)\s*$\n+([\s\S]*?)(?=\n#{2,3}\s|\n*<script|\s*$)/gm;
+  let m;
+  while ((m = re.exec(md))) {
+    const q = m[1].trim();
+    const a = m[2].replace(/[*_`#>]/g, '').replace(/\s+/g, ' ').trim();
+    if (q && a && a.length < 700) faqs.push({ q, a });
+  }
+  return faqs;
+};
+
+// Author entity — reused across posts so every page reinforces "athlete + AI-search operator".
+const AUTHOR = {
+  "@type": "Person",
+  "name": "Yauhen Massalski",
+  "url": SITE,
+  "jobTitle": "Pro basketball player & AI-search growth consultant",
+  "knowsAbout": ["AI search optimization (AEO)", "SEO", "D2C and eCommerce growth", "AI-assisted marketing"],
+  "sameAs": [
+    "https://www.youtube.com/@yauhenm",
+    "https://www.tiktok.com/@y.massalski",
+    "https://www.linkedin.com/in/yauhen-massalski/",
+  ],
+};
+
 const fmtDate = (iso) => {
   const d = new Date(iso);
   // timeZone UTC: "2026-05-11" parses as UTC midnight — local (PDT) rendering shifts it a day early
@@ -245,11 +273,23 @@ ${JSON.stringify({
   "description": post.description,
   "image": ogImg,
   "datePublished": post.date,
-  "author": {"@type": "Person", "name": "Yauhen Massalski", "url": SITE},
-  "publisher": {"@type": "Person", "name": "Yauhen Massalski", "url": SITE},
+  "dateModified": post.lastUpdated || post.date,
+  "author": AUTHOR,
+  "publisher": AUTHOR,
   "mainEntityOfPage": url,
 })}
 </script>
+${post.faqs && post.faqs.length ? `<script type="application/ld+json">
+${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": post.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a },
+  })),
+})}
+</script>` : ''}
 ${post.videoYT ? `<script type="application/ld+json">
 ${JSON.stringify({
   "@context": "https://schema.org",
@@ -499,9 +539,11 @@ async function main() {
       description: data.description || '',
       date: data.date instanceof Date ? data.date.toISOString().slice(0, 10) : (data.date || '2026-01-01'),
       lane: data.lane || 'build-story',
+      lastUpdated: data.lastUpdated ? (data.lastUpdated instanceof Date ? data.lastUpdated.toISOString().slice(0,10) : data.lastUpdated) : null,
       hero: data.hero || null,
       videoYT: data.videoYT || null,
       tags: data.tags || [],
+      faqs: extractFAQs(content),
       readMin: readingTime(content),
       html,
     });
