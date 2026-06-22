@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-label="AI-referred sessions over 4 weeks for an anonymized classic-car marketplace: Bing 431, DuckDuckGo 173, ChatGPT 40.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16130F"/><stop offset="1" stop-color="#0E0C0A"/></linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5C987"/><stop offset="1" stop-color="#B8923F"/></linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="758" fill="none" stroke="rgba(242,237,227,0.08)"/>
+
+  <!-- header -->
+  <text x="64" y="86" fill="#F2EDE3" font-family="'Anton',sans-serif" font-size="46" letter-spacing="0.5">AI-REFERRED SESSIONS · 4 WEEKS</text>
+  <text x="64" y="128" fill="#C9A961" font-family="'JetBrains Mono',monospace" font-size="19" letter-spacing="2">A CLASSIC-CAR MARKETPLACE · MAY 23 – JUN 19, 2026</text>
+
+  <!-- baseline -->
+  <line x1="64" y1="560" x2="1136" y2="560" stroke="rgba(242,237,227,0.18)" stroke-width="2"/>
+
+  <!-- bars: max 431 -> height scale. plot area top 200, bottom 560 => 360px for 431 -->
+  <!-- Bing 431 -->
+  <rect x="150" y="200" width="180" height="360" rx="6" fill="url(#bar)"/>
+  <text x="240" y="186" fill="#E5C987" font-family="'Anton',sans-serif" font-size="52" text-anchor="middle">431</text>
+  <text x="240" y="598" fill="#A89F92" font-family="'Inter',sans-serif" font-size="24" text-anchor="middle" font-weight="600">Bing</text>
+
+  <!-- DuckDuckGo 173 -> 360*173/431=144 -->
+  <rect x="450" y="416" width="180" height="144" rx="6" fill="url(#bar)"/>
+  <text x="540" y="402" fill="#E5C987" font-family="'Anton',sans-serif" font-size="52" text-anchor="middle">173</text>
+  <text x="540" y="598" fill="#A89F92" font-family="'Inter',sans-serif" font-size="24" text-anchor="middle" font-weight="600">DuckDuckGo</text>
+
+  <!-- ChatGPT 40 -> 33 -->
+  <rect x="750" y="527" width="180" height="33" rx="6" fill="url(#bar)"/>
+  <text x="840" y="513" fill="#E5C987" font-family="'Anton',sans-serif" font-size="52" text-anchor="middle">40</text>
+  <text x="840" y="598" fill="#A89F92" font-family="'Inter',sans-serif" font-size="24" text-anchor="middle" font-weight="600">ChatGPT</text>
+
+  <!-- total callout -->
+  <text x="1040" y="240" fill="#F2EDE3" font-family="'Anton',sans-serif" font-size="64" text-anchor="middle">644</text>
+  <text x="1040" y="276" fill="#A89F92" font-family="'JetBrains Mono',monospace" font-size="15" text-anchor="middle" letter-spacing="1">TOTAL · 28 DAYS</text>
+
+  <!-- honest footnote -->
+  <text x="64" y="668" fill="#C7593C" font-family="'JetBrains Mono',monospace" font-size="17" letter-spacing="1">SESSIONS FROM AI SOURCES — NOT SALES.</text>
+  <text x="64" y="700" fill="#6B6258" font-family="'Inter',sans-serif" font-size="16">A sister site in the same window: Bing 11 · DuckDuckGo 4 · ChatGPT 1 — total 16. Same niche, no entity work.</text>
+  <text x="64" y="730" fill="#6B6258" font-family="'Inter',sans-serif" font-size="14">Client anonymized. Source: GA4 / Search Console, brand redacted.</text>
+</svg>
