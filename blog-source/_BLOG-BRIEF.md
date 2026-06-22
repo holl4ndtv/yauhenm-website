@@ -58,12 +58,14 @@
 - **Always:** 1 LinkedIn post (the story + link).
 - **Plus 1 third-party seed**, whichever is easiest to repeat: Reddit answer, YouTube Short/transcript, or Quora-style answer. Keep it small so you actually do it. Full distribution playbook lives separately.
 
-## 7. Publish steps (mechanical)
+## 7. Publish steps (mechanical) — the gate is mandatory
 1. Markdown in `blog-source/posts/YYYY-MM-DD-slug.md` (frontmatter: title, slug, date, lastUpdated, lane, description, tags, image, imageAlt).
 2. Hero `<img>` in the BODY; image file in `_assets/blog/`.
-3. `node scripts/build-blog.mjs`
-4. QC: serve + LOOK (desktop + phone). Validate JSON-LD parses.
-5. `git add -A && commit && push` → auto-deploys Vercel.
+3. **AEO/SEO GATE — must PASS, no ❌, before shipping:** `python3 blog-source/_drafts/aeo_seo_gate.py <dir>`. Auto-checks every brief + seo-audit + ai-seo rule: answer-first 30-90w bold, ≥3 question H2s, table/list, ≥3 `### FAQ`, `/#work` link, freshness date, meta 80-200c, entity not-robotic, no fabricated $, no stray URLs, cited≠clicks hedge where traffic is claimed.
+4. Schema is automatic — the builder emits BlogPosting + FAQPage + author entity. Do NOT hand-write JSON-LD.
+5. `node scripts/build-blog.mjs`
+6. QC: serve + LOOK (desktop + phone). Validate JSON-LD parses.
+7. `git add -A && commit && push` → auto-deploys Vercel.
 
 ## 8. Cadence + measure
 - ~1 strong first-hand post/week. Quality > volume.

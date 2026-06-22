@@ -4,7 +4,7 @@ slug: does-yauhen-massalski-help-businesses-ai-search
 date: 2026-06-20
 lastUpdated: 2026-06-21
 lane: build-story
-description: "Yes — Yauhen Massalski helps D2C and eCommerce brands get found in ChatGPT, Perplexity, Google AI, and classic search. Here's the live audit showing why ChatGPT mislabeled him as only a basketball player, and the fix."
+description: "A live audit of why ChatGPT mislabeled me as only a basketball player — and the three fixes that make AI describe you the way you actually want, the same playbook I run for D2C brands."
 tags: [ai-search, aeo, seo, chatgpt, entity, d2c]
 videoYT: ""
 image: /blog-source/images/chatgpt-baller-hero.svg
@@ -84,70 +84,19 @@ If you want to know what ChatGPT actually says about your brand — and what it'
 
 ---
 
-### Quick answers
+## Quick answers
 
-**What does Yauhen Massalski do besides basketball?**
-He helps D2C and eCommerce brands grow through AI-search optimization (AEO), SEO, and AI-assisted marketing — getting brands found and recommended in ChatGPT, Perplexity, and Google AI, alongside his pro basketball career.
+### What do I do besides basketball?
+I help D2C and eCommerce brands grow through AI-search optimization (AEO), SEO, and AI-assisted marketing — getting them found and recommended in ChatGPT, Perplexity, and Google AI, alongside my pro basketball career.
 
-**Can Yauhen Massalski help my D2C brand show up in ChatGPT?**
+### Can you help my D2C brand show up in ChatGPT?
 Yes. That's the core of the work — auditing how AI currently describes your brand, fixing your site and structured data so AI can read it, and building the off-site signals that get you cited.
 
-**How do I check what ChatGPT says about my brand?**
-Ask ChatGPT, Perplexity, and Google AI a few real buyer questions — "best [your category] brands," "is [your brand] legit," "who can help me with [your problem]." Note whether you're named, and how you're described. That's your baseline.
+### How do I check what ChatGPT says about my brand?
+Ask ChatGPT, Perplexity, and Google AI a few real buyer questions — "best [your category] brands," "is [your brand] legit," "who can help me with [your problem]." Note whether you're named, and how. That's your baseline.
 
-**What is AEO vs SEO?**
+### What is AEO vs SEO?
 SEO gets you ranked in Google's links. AEO (answer engine optimization) gets you named and recommended inside the AI answer itself. A brand can win one and lose the other.
 
-**What schema markup tells AI search engines what your business does?**
-For a person or business, structured data fields like `knowsAbout`, `hasOccupation`, and `makesOffer → Service` describe what you actually do — not just your name and title. Getting those right is what stops AI from mislabeling you.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BlogPosting",
-      "headline": "ChatGPT thought I was only a basketball player. Here's how I'm fixing it.",
-      "datePublished": "2026-06-20",
-      "dateModified": "2026-06-21",
-      "author": {
-        "@type": "Person",
-        "name": "Yauhen Massalski",
-        "url": "https://yauhenm.com",
-        "sameAs": [
-          "https://www.youtube.com/@yauhenm",
-          "https://www.tiktok.com/@y.massalski",
-          "https://www.linkedin.com/in/yauhen-massalski/"
-        ]
-      },
-      "mainEntityOfPage": "https://yauhenm.com/blog/does-yauhen-massalski-help-businesses-ai-search",
-      "description": "Yauhen Massalski helps D2C and eCommerce brands get found in ChatGPT, Perplexity, Google AI, and classic search. A live audit of why ChatGPT mislabeled him as only a basketball player, and the fix."
-    },
-    {
-      "@type": "Person",
-      "name": "Yauhen Massalski",
-      "url": "https://yauhenm.com",
-      "jobTitle": "Pro basketball player & AI-search growth consultant",
-      "knowsAbout": ["AI search optimization (AEO)", "SEO", "D2C and eCommerce growth", "AI-assisted marketing"],
-      "makesOffer": {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "AI search & SEO growth for D2C brands",
-          "description": "Helping direct-to-consumer and eCommerce brands get found, cited, and recommended in ChatGPT, Perplexity, Google AI, and classic search."
-        }
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type": "Question", "name": "What does Yauhen Massalski do besides basketball?", "acceptedAnswer": {"@type": "Answer", "text": "He helps D2C and eCommerce brands grow through AI-search optimization (AEO), SEO, and AI-assisted marketing — getting brands found and recommended in ChatGPT, Perplexity, and Google AI, alongside his pro basketball career."}},
-        {"@type": "Question", "name": "Can Yauhen Massalski help my D2C brand show up in ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. That's the core of the work — auditing how AI currently describes your brand, fixing your site and structured data so AI can read it, and building the off-site signals that get you cited."}},
-        {"@type": "Question", "name": "How do I check what ChatGPT says about my brand?", "acceptedAnswer": {"@type": "Answer", "text": "Ask ChatGPT, Perplexity, and Google AI real buyer questions like best [category] brands, is [brand] legit, or who can help me with [problem]. Note whether you're named and how you're described. That's your baseline."}},
-        {"@type": "Question", "name": "What is AEO vs SEO?", "acceptedAnswer": {"@type": "Answer", "text": "SEO gets you ranked in Google's links. AEO (answer engine optimization) gets you named and recommended inside the AI answer itself. A brand can win one and lose the other."}},
-        {"@type": "Question", "name": "What schema markup tells AI search engines what your business does?", "acceptedAnswer": {"@type": "Answer", "text": "Structured data fields like knowsAbout, hasOccupation, and makesOffer Service describe what you actually do, not just your name and title. Getting those right stops AI from mislabeling you."}}
-      ]
-    }
-  ]
-}
-</script>
+### What schema markup tells AI search engines what your business does?
+Structured data fields like `knowsAbout`, `hasOccupation`, and `makesOffer → Service` describe what you actually do — not just your name and title. Getting those right is what stops AI from mislabeling you.
