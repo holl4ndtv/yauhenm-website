@@ -4,7 +4,7 @@ slug: merchant-feed-review-gap-most-stores-miss
 date: 2026-06-21
 lastUpdated: 2026-06-21
 lane: ai-search
-description: "Get products into ChatGPT and AI shopping answers by enabling the ChatGPT Merchant Program, joining Perplexity’s free program, and enriching feeds with review_count, average_rating, GTIN, and live pricing."
+description: "Most stores are invisible to AI shopping answers because their product feed skips review_count, ratings, and GTINs — and the ChatGPT/Perplexity merchant programs. Here's the fix."
 tags: [ai-search, ecommerce, chatgpt, perplexity, product-feed]
 ---
 
@@ -80,6 +80,8 @@ AI loves structure. It hates ambiguity. Give it structure, and it will give you 
 Yes. You don’t need a coder. You need an ops mindset.
 
 Check your feed daily. Watch for drops in `review_count`. Ensure prices are live. If your stock is out of sync, AI will recommend dead links. That kills trust fast.
+
+If you want me to audit your feed and get you into the AI shopping answers, [here's what I do for D2C brands](/#work).
 
 ## FAQ
 

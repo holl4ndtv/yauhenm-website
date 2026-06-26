@@ -61,25 +61,25 @@ That’s the scoreboard. If AI is citing you, you’re winning. Traffic will fol
 
 If you’re ready to stop guessing and start fixing, let’s talk. I work with a small number of D2C brands at a time. I need to know your current state before I can advise on cost or timeline.
 
-[Verify: pricing] details are handled in our first call. We’ll look at your specific AI footprint and map out the path forward.
+Pricing depends on your starting point — we handle it on that first call, once we've looked at your specific AI footprint and mapped the path forward.
 
-Check out my other post on [Why classic D2C SEO is failing in ChatGPT — and what to do instead] for more context on why this shift matters.
+For more context on why this shift matters, read [Why classic D2C SEO is failing in ChatGPT](/blog/why-classic-d2c-seo-failing-in-chatgpt).
 
-Ready to fix your brand’s visibility? Visit /work to book a discovery call.
+Ready to fix your brand's visibility? [Book a discovery call](/#work).
 
-### FAQ
+## FAQ
 
-**How do I start fixing my brand's AI search visibility?**
-Start by auditing how AI currently describes you, then fix site structure, build off-site signals, and re-test monthly. Focus on entity clarity, not traffic.
+### How do I start fixing my brand's AI search visibility?
+Start by auditing how AI currently describes you, then fix your site structure, build off-site signals, and re-test monthly. Focus on entity clarity, not traffic.
 
-**What is the first step in an AI search audit?**
-The first step is checking how major AI models (like ChatGPT or Perplexity) currently describe your brand and products to identify misalignments.
+### What is the first step in an AI search audit?
+Checking how the major AI models (ChatGPT, Perplexity, Google AI) currently describe your brand and products — that's where you find the misalignments.
 
-**How long does it take for AI search results to improve?**
-Results typically shift within 4-12 weeks depending on the severity of current data conflicts and the strength of new signals built.
+### How long does it take for AI search results to improve?
+Results typically shift within 4–12 weeks, depending on how severe the current data conflicts are and how strong the new signals you build are.
 
-**Do I need more blog posts to fix AI visibility?**
-No. Clearer structured data and accurate entity definitions are more important than volume. Fix the core definitions before adding content.
+### Do I need more blog posts to fix AI visibility?
+No. Clearer structured data and accurate entity definitions matter more than volume. Fix the core definitions before adding content.
 
-**How do I measure success in AI search?**
-Measure citations. If AI models mention your brand and link to you as an authority in relevant queries, you are succeeding.
+### How do I measure success in AI search?
+Measure citations. If AI models name your brand and treat you as an authority on relevant questions, you're winning — traffic and sales are the lagging indicators.

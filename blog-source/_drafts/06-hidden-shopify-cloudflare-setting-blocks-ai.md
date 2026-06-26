@@ -105,7 +105,20 @@ Do not just delete all bot rules. That is dangerous.
 
 ## Is this a quick fix?
 
-Yes and no. The technical change takes five minutes. The visibility gain takes time.
+Yes and no. The technical change takes five minutes. The visibility gain takes time — make the changes, then re-check in a couple of days, because AI crawlers don't re-read your site in real time.
+
+If you want me to find exactly what's hiding your store from AI, [here's what I do for D2C brands](/#work).
+
+## FAQ
+
+### How do I know if I'm blocking AI crawlers?
+Check two places: your `robots.txt` for a `Disallow: /`, and your Cloudflare/WAF settings for "Bot Fight Mode" or an "AI bot" rule. The fastest test: set a browser User-Agent switcher to `OAI-SearchBot` and load your homepage — a blank page or error means something is blocking you.
+
+### Does blocking AI bots hurt my Google rankings?
+No. Googlebot and Bingbot are separate user-agents from the AI search bots, so blocking AI crawlers usually doesn't touch your Google rankings. But never block Googlebot itself — that kills your organic traffic.
+
+### Which bots should a D2C store allow?
+The search bots: Googlebot, Bingbot, OAI-SearchBot, PerplexityBot, and ClaudeBot. You want these reading your site. Always verify the current user-agent strings, since they change as the models update.
 
 AI models update their indexes on different schedules. You might still be invisible for weeks after fixing your robots.txt. This is normal. Do not panic. Do not spam support tickets.
 

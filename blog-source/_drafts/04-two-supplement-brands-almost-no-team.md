@@ -76,6 +76,8 @@ Most founders try to automate their way out of thinking. They want AI to "figure
 
 The win comes from clarity. If you can’t articulate your brand voice in a paragraph, no prompt will save you. Start there. Define the tone. Define the facts. Then let the machine do the typing.
 
+This is the same operating system I bring to other founders' brands. If you want help building it, [here's what I do for D2C brands](/#work).
+
 ## FAQ
 
 ### Can AI replace customer support?
@@ -91,4 +93,4 @@ Yes, as long as you verify all factual claims. AI can hallucinate ingredients or
 The core principle—automate repetition, keep strategy human—applies to any niche. The specific prompts will change, but the workflow remains the same.
 
 ### What is the biggest risk of using AI for ecommerce?
-Brand dilution. If you let AI write everything without strict guardrails, your voice becomes generic. You become ind
+Brand dilution. If you let AI write everything without strict guardrails, your voice becomes generic — you become indistinguishable from every other store, and AI has no reason to recommend a clone.
